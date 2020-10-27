@@ -1,11 +1,11 @@
-# Проект 3: Путешествие по России
+# Проект 4: Место
 
 **Что это?**
 
-Это [страница](https://danilshvalov.github.io/russian-travel/), которая рассказывает о невероятных местах для путешествия по России. 
+Это [страница](https://danilshvalov.github.io/mesto/), использующая HTML, CSS и JavaScript.
 
 
-<img src="./images/preview.jpg" alt="Превью страницы" width="570"/>
+<img src="images/preview.jpg" alt="Превью страницы" width="570"/>
 
 ---
 
@@ -20,4 +20,5 @@
 * Отзывчивые контейнеры
 * Медиа-запросы
 * Использование веток в Git
+* JavaScript DOM
 
