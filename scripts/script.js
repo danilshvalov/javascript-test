@@ -1,6 +1,6 @@
 const initialCards = [
-        {
-        name: "Калерия",
+    {
+        name: "Карелия",
         link: "https://images.unsplash.com/photo-1559029885-dfa0555748d2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=640&h=427&fit=crop&ixid=eyJhcHBfaWQiOjF9"
     },
     {
@@ -25,31 +25,42 @@ const initialCards = [
     }
 ];
 
-
 let profileName = document.querySelector(".profile__name");
 let profileJob = document.querySelector(".profile__about");
-
-let nameInput = document.querySelector(".popup__field_type_name");
-let jobInput = document.querySelector(".popup__field_type_job");
-
 let editProfileButton = document.querySelector(".profile__button_type_edit");
-let closePopupButton = document.querySelector(".popup__button_type_close");
 let addElementButton = document.querySelector(".profile__button_type_add");
 
-let editForm = document.querySelector(".popup__container_edit-profile");
+let editProfilePopup = document.querySelector(".popup_edit-profile");
+let editForm = editProfilePopup.querySelector(".popup__container_edit-profile");
+let editFormCloseButton = editProfilePopup.querySelector(".popup__button_type_close");
+let nameInput = editProfilePopup.querySelector(".popup__field_type_name");
+let jobInput = editProfilePopup.querySelector(".popup__field_type_job");
 
-let popup = document.querySelector(".popup");
+
+let addElementPopup = document.querySelector(".popup_add-element");
+let addForm = addElementPopup.querySelector(".popup__container_add-element");
+let addFormCloseButton = addElementPopup.querySelector(".popup__button_type_close");
+let titleInput = addElementPopup.querySelector(".popup__field_type_title");
+let imageLinkInput = addElementPopup.querySelector(".popup__field_type_image-link");
+
+
+
 
 function toggleEditProfilePopup() {
-    if (!popup.classList.contains("popup_opened")) {
+    if (!editProfilePopup.classList.contains("popup_opened")) {
         nameInput.value = profileName.textContent.trim();
         jobInput.value = profileJob.textContent.trim();
     }
 
-    popup.classList.toggle("popup_opened");
+    editProfilePopup.classList.toggle("popup_opened");
 }
 
-function formSubmitHandler(evt) {
+function toggleAddElementPopup() {
+    addElementPopup.classList.toggle("popup_opened");
+    addForm.querySelector(".popup__form").reset();
+}
+
+function editFormSubmitHandler(evt) {
     evt.preventDefault();
 
     let name = nameInput.value;
@@ -61,12 +72,25 @@ function formSubmitHandler(evt) {
     toggleEditProfilePopup();
 }
 
+function addFormSumbitHandler(evt) {
+    evt.preventDefault();
+
+    renderNewElement({
+        name: titleInput.value,
+        link: imageLinkInput.value
+    });
+
+    toggleAddElementPopup();
+}
+
 editProfileButton.addEventListener("click", toggleEditProfilePopup);
-closePopupButton.addEventListener("click", toggleEditProfilePopup);
-editForm.addEventListener("submit", formSubmitHandler);
+addElementButton.addEventListener("click", toggleAddElementPopup);
 
+editForm.addEventListener("submit", editFormSubmitHandler);
+editFormCloseButton.addEventListener("click", toggleEditProfilePopup);
 
-
+addForm.addEventListener("submit", addFormSumbitHandler);
+addFormCloseButton.addEventListener("click", toggleAddElementPopup);
 
 
 
